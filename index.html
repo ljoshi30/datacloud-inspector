@@ -93,18 +93,31 @@
 
     <h3>&#128202; Data Explorer (DLO / DMO query view)</h3>
     <ul>
-      <li><span class="pill">Columns</span> &mdash; opens the Column Selector showing <strong>all available fields</strong>, not just the 10 SF shows by default; all fields pre-selected</li>
-      <li><strong>Available tab</strong> &mdash; search, sort A&rarr;Z / Z&rarr;A, select all / deselect all</li>
-      <li><strong>Column Order tab</strong> &mdash; drag rows to reorder columns before applying</li>
-      <li><strong>Apply columns</strong> &mdash; applies selected fields; SF re-queries data for all columns; columns render at 200px wide with text clipped cleanly</li>
-      <li><strong>Save set</strong> &mdash; saves current selection &amp; order to browser storage, keyed per object per org; overrides any previous saved set</li>
-      <li><strong>Restore saved</strong> &mdash; explicitly re-applies the saved set at any time with a visible spinner</li>
-      <li><strong>Clear saved</strong> &mdash; removes the saved set for this object</li>
-      <li><strong>Export CSV</strong> &mdash; downloads visible rows as CSV with the current column set</li>
-      <li><strong>Edit SOQL</strong> &mdash; builds a SOQL SELECT from your selection; copy to clipboard for Developer Console</li>
+      <li><span class="pill">Columns</span> &mdash; opens the Column Selector showing <strong>all available fields</strong> for the object, not just the handful SF shows by default</li>
+      <li><strong>Available tab</strong> &mdash; search fields by name or label, sort A&rarr;Z / Z&rarr;A, select all / deselect all</li>
+      <li><strong>Column Order tab</strong> &mdash; drag rows to reorder your selected columns before applying</li>
+      <li><strong>Apply columns</strong> &mdash; applies your selection; SF re-fetches data for those columns; each column renders at 200&nbsp;px wide with text clipped cleanly</li>
+      <li><strong>Selection memory</strong> &mdash; reopening the Column Selector always shows your last applied set, not all fields &mdash; no need to re-select every time</li>
+      <li><strong>Save set</strong> &mdash; saves current selection &amp; order to browser storage (keyed per object per org, 90-day TTL); always overwrites the previous saved set</li>
+      <li><strong>Restore saved</strong> &mdash; re-applies the saved set at any time with a visible spinner</li>
+      <li><strong>Clear saved</strong> &mdash; removes the saved set for this object from browser storage</li>
+      <li><strong>Export CSV</strong> &mdash; downloads all visible rows as a CSV with the current column set</li>
+      <li><span class="pill">Edit SOQL</span> &mdash; full VS Code&ndash;style dark SOQL editor with syntax highlighting:
+        <ul style="margin-top:6px">
+          <li>Opens pre-filled with a <code>SELECT</code> of your currently selected columns and a <code>LIMIT 100</code></li>
+          <li><strong>Inline autocomplete</strong> &mdash; type any character and a dropdown appears inside the editor showing matching field names (with type badge) and SOQL keywords; Tab or click to insert, Esc to dismiss</li>
+          <li><strong>Syntax colours</strong> &mdash; keywords in blue, field names in fuchsia, strings in green, numbers in orange</li>
+          <li><strong>Run</strong> &mdash; applies the SELECT fields as columns and respects the LIMIT (max 100, Data Cloud's limit); copy the query to use in Developer Console for WHERE filtering</li>
+          <li><strong>Copy</strong> &mdash; copies the full SOQL to clipboard for Developer Console or Workbench</li>
+          <li><strong>Reset</strong> &mdash; restores the original auto-generated query</li>
+        </ul>
+      </li>
     </ul>
-    <div class="note"><strong>Auto-restore:</strong> on the first &ldquo;Show columns&rdquo; open after a page load, any saved set is automatically applied (spinner shown). On subsequent opens the picker shows the saved selection and you can modify it freely &mdash; click <strong>Restore saved</strong> to re-apply explicitly.</div>
-    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">All export modals are draggable (grab the header) and resizable (drag the bottom-right corner).</p>
+    <div class="note">
+      <strong>Auto-restore:</strong> on the first Column Selector open after a page load, any saved set is automatically applied (spinner shown). On subsequent opens the picker shows your last applied columns &mdash; click <strong>Restore saved</strong> to re-apply the saved set explicitly.<br><br>
+      <strong>WHERE clause note:</strong> The SOQL editor applies column selection and respects LIMIT. WHERE filtering is not supported through this tool &mdash; copy the query to Developer Console or Workbench to run WHERE clauses against Data Cloud.
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">All modals are draggable (grab the header) and resizable (drag the bottom-right corner).</p>
   </div>
 
   <div class="card">
@@ -118,7 +131,7 @@
         <tr><td><strong>Export</strong></td><td>Mapping canvas</td><td>Opens the full mapping export modal</td></tr>
         <tr><td><strong>Export Rules</strong></td><td>Segment pages</td><td>Opens the segment rules export with Include / Exclude / Rank &amp; Limit tabs</td></tr>
         <tr><td><strong>Export Fields</strong></td><td>DLO / Data Stream / DMO</td><td>Opens the field export modal</td></tr>
-        <tr><td><strong>Columns</strong></td><td>Data Explorer</td><td>Opens Column Selector &mdash; pick &amp; reorder fields, apply to table, save set, restore, export CSV, build SOQL</td></tr>
+        <tr><td><strong>Columns</strong></td><td>Data Explorer</td><td>Opens Column Selector &mdash; pick &amp; reorder fields, apply to table, save/restore selection, export CSV, open SOQL Editor with autocomplete</td></tr>
         <tr><td><strong>Remove</strong></td><td>All pages</td><td>Removes the tool from the page</td></tr>
       </tbody>
     </table>
