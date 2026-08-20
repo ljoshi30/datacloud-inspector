@@ -168,5 +168,22 @@
   };
 })();
 </script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0d6d64614a494f34a06fb61145f59228"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+// Track bookmarklet drag
+(function() {
+  var tracked = false;
+  var bmLink = document.querySelector('a.bm');
+  if (!bmLink) return;
+  function trackDrag() {
+    if (tracked) return;
+    tracked = true;
+    var img = new Image();
+    img.src = '/datacloud-inspector/bookmarklet-dragged?t=' + Date.now();
+  }
+  bmLink.addEventListener('mousedown', trackDrag);
+  bmLink.addEventListener('dragstart', trackDrag);
+})();
+</script>
 </body>
 </html>
